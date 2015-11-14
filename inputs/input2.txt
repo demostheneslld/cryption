@@ -1,0 +1,5 @@
+Jeremy. If you can read this message, there may yet be hope. 
+This is a simple substution cypher using ASCII offsets rather than merely alphabetical looping offsets.
+
+If you decode this message, respond with the key.
+
