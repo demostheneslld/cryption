@@ -14,14 +14,16 @@ pd.options.mode.chained_assignment = None
 #####################################################################################################
 
 # PARAMS
-key = -6
 preserve = ['\n']
+c_values = cryption.get_c_values(cryption.allowed_chars)
+values_c = {v: k for k, v in c_values.items()}
+key = 5
 sendtofile = True
 inputstring = ''
+fn = 'US_Constitution.txt'
 
 # READ FILE
 if (inputstring == ''):
-    fn = 'US_Constitution.txt'
     path = inputs['cryption'] + '/' + fn
     i = open(path, 'r')
     unencrypted_string = i.read()
@@ -35,13 +37,15 @@ unencrypted_list = list(unencrypted_string)
 # ACTUAL ENCRYPTION
 nl = []
 for c in unencrypted_list:
+    c = c.lower()
     if (c in preserve):
         nl.append(c)
+    elif (c not in c_values.keys()):
+        pass
     else:
-        nc = ord(c)+key
-        nc = unichr(nc)
+        nc = (c_values[c] + key)%len(c_values)
+        nc = values_c[nc]
         nl.append(nc)
-
 # TURN TO STRING
 encrypted_list = nl
 encrypted_string = str(''.join(encrypted_list))
